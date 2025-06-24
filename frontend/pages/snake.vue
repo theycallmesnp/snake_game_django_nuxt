@@ -108,7 +108,6 @@ const startGame = () => {
 
 const submitScore = async () => {
   const token = localStorage.getItem("token");
-  console.log('Token used for submitScore:', token);
   if (!token) return;
   try {
     await $fetch("http://127.0.0.1:8000/api/snake/scores/", {
@@ -124,14 +123,11 @@ const submitScore = async () => {
 
 const fetchScores = async () => {
   const token = localStorage.getItem("token");
-  console.log('Token used for fetchScores:', token);
   if (!token) return alert("Please login first!");
   try {
     const data = await $fetch("http://127.0.0.1:8000/api/snake/scores/", {
       headers: { Authorization: `Token ${token}` },
     });
-    console.log(data, ":dldldldldldlddld--->");
-
     scores.value = data;
   } catch (e) {
     alert("Failed to fetch scores");
